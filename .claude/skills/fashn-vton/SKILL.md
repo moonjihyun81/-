@@ -1,6 +1,6 @@
 ---
 name: fashn-vton
-description: FASHN AI의 오픈소스 가상 피팅 모델 FASHN VTON v1.5(fashn-AI/fashn-vton-1.5)로 "사람 사진 + 옷 사진 → 그 옷을 입은 사진"을 만든다. 설치, 가중치 다운로드, 파이썬·CLI 실행, 옵션(tops/bottoms/one-pieces, 모델컷/누끼컷, 스텝·시드) 고르기, GPU가 없을 때 대안(허깅페이스 Spaces·FASHN API), 라이선스 주의점까지 안내한다. "가상 피팅", "virtual try-on", "VTON", "fashn", "옷 입혀보기", "상품 사진을 모델에 입혀줘", "룩북 피팅컷" 같은 요청에 사용.
+description: FASHN AI의 오픈소스 가상 피팅 모델 FASHN VTON v1.5(fashn-AI/fashn-vton-1.5, Apache-2.0·상업 사용 가능·마스크 불필요·가벼움)로 "사람 사진 + 옷 사진 → 그 옷을 입은 사진"을 만든다. 설치, 가중치 다운로드, 파이썬·CLI 실행, 옵션(tops/bottoms/one-pieces, 모델컷/누끼컷, 스텝·시드) 고르기, GPU가 없을 때 대안(허깅페이스 Spaces·FASHN API), 라이선스 주의점까지 안내한다. "가상 피팅", "virtual try-on", "VTON", "fashn", "옷 입혀보기", "상품 사진을 모델에 입혀줘", "룩북 피팅컷" 같은 요청에 사용. 비상업 연구용·로고 디테일 비교는 idm-vton 스킬.
 ---
 
 # FASHN VTON v1.5 — 옷 사진을 사람 사진에 입히기
@@ -144,6 +144,7 @@ for i, img in enumerate(result.images):
 
 ## 8. 다른 스킬과 연결
 
+- **idm-vton**: 같은 가상 피팅이지만 비상업(CC BY-NC-SA) 연구용, 로고·프린트 디테일에 강함. 상업용이면 이 스킬(fashn-vton), 개인 시안·연구·디테일 비교면 idm-vton. 두 모델 비교표는 idm-vton 스킬 9절.
 - **outfit-swap**: 2D·반실사 캐릭터의 의상 교체는 그쪽(생성형 편집). 실사 사람 + 실제 상품 사진이면 이 스킬.
 - **the-given-brand**: 더기븐 티셔츠 누끼컷을 AI 모델 사진에 입혀 룩북·피드 시안을 만들 때 → `category="tops"`, `garment_photo_type="flat-lay"`, 브랜드 모델 규칙은 the-given-brand를 따른다.
 - 결과 검수는 outfit-swap의 <프롬프트 3> 방식(원본과 결과를 항목별로 비교)을 그대로 쓴다.
