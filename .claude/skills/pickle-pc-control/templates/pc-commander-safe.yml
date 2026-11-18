@@ -1,0 +1,33 @@
+name: PC Remote Commander (safe)
+
+# 원본 templates/pc-commander.yml 의 보강판
+# - 저장소 주인 계정만 실행 가능 (협업자·봇이 실수로 실행하는 것 차단)
+# - 명령을 환경변수로 넘겨서 YAML 치환 문제 방지
+# - 한 번에 하나만 실행, 10분 넘으면 자동 중단
+
+'on':
+  workflow_dispatch:
+    inputs:
+      command:
+        description: '실행할 명령어 (PowerShell)'
+        required: true
+        type: string
+        default: 'python --version'
+
+concurrency:
+  group: pc-commander
+  cancel-in-progress: false
+
+jobs:
+  run-on-pc:
+    if: github.actor == github.repository_owner
+    runs-on: self-hosted
+    timeout-minutes: 10
+    steps:
+      - name: Execute Command
+        shell: powershell
+        env:
+          PC_COMMAND: ${{ github.event.inputs.command }}
+        run: |
+          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+          Invoke-Expression $env:PC_COMMAND
